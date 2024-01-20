@@ -1,0 +1,45 @@
+
+%% part 1 -------------------------------------------------------------------------------------
+
+module load StdEnv/2020 python/3.8 cuda cudnn
+
+SOURCEDIR=/home/shibin2/projects/def-janehowe/shibin2
+DATADIR=/home/shibin2/projects/def-janehowe/shared_2022/cryodrgn/dataset/noncontiguous
+RESULT=/home/shibin2/projects/def-janehowe/shared_2022/output
+
+# Prepare virtualenv
+virtualenv --no-download $SLURM_TMPDIR/env
+source $SLURM_TMPDIR/env/bin/activate
+pip3 install --no-index --upgrade pip
+pip3 install --no-index torch==1.8.0
+pip3 install --no-index pillow
+pip3 install --no-index matplotlib
+pip3 install --no-index tensorboard
+pip3 install --no-index tensorboardX
+pip3 install --no-index scipy
+pip3 install --no-index ninja
+pip3 install --no-index pandas
+pip install --no-index $SOURCEDIR/wheels/torchdiffeq-0.2.2-py3-none-any.whl
+# pip install --no-index $SOURCEDIR/wheels/torchvision-0.9.0-py3-none-any.whl
+pip install --no-index torchvision
+
+
+%% part 2 -------------------------------------------------------------------------------------
+cp  -rf /home/shibin2/projects/def-janehowe/shared_2022/code/LSGM_SPR ./
+cd LSGM_SPR
+
+python train_vae.py $DATADIR/particles.128.ctf.mrcs --poses $DATADIR/poses.pkl  --ctf $DATADIR/ctf.pkl  --zdim 1 -n 10 --enc-dim 1024 --enc-layers 3 --dec-dim 1024 --dec-layers 3 --amp --uninvert-data --root $RESULT
+
+
+python train_vae.py $DATADIR/data/L17Combine_weight_local.mrcs --poses $DATADIR/data/pose.pkl --ctf $DATADIR/data/ctf.pkl --zdim 16 -n 50 --enc-dim 1024 --enc-layers 3 --dec-dim 1024 --dec-layers 3 --amp --uninvert-data --root $RESULT --ind $DATADIR/intersection.96393.pkl --lazy
+
+cryodrgn train_vae $DATADIR/particles.128.ctf.mrcs --poses $DATADIR/poses.pkl  --ctf $DATADIR/ctf.pkl --zdim 1 -n 200 --enc-dim 1024 --enc-layers 3 --dec-dim 1024 --dec-layers 3  -o $SOURCEDIR/results_cryodrgn/cooperative_z1_1024x3_inverted --amp --uninvert-data --load $SOURCEDIR/results_cryodrgn/cooperative_z1_1024x3_inverted/weights.49.pkl
+
+
+%% part 3 -------------------------------------------------------------------------------------
+SOURCEDIR=/home/shibin2/projects/def-janehowe/shibin2
+DATADIR=/home/shibin2/projects/def-janehowe/shared_2022/cryodrgn/dataset/EMPIAR-10076
+RESULT=/home/shibin2/projects/def-janehowe/shared_2022/output_10076
+cp  -rf /home/shibin2/projects/def-janehowe/shared_2022/scripts/LSGM_SPR ./
+cd LSGM_SPR
+python train_lsgm.py $DATADIR/data/L17Combine_weight_local.mrcs --poses $DATADIR/data/pose.pkl --ctf $DATADIR/data/ctf.pkl --zdim 16 --epochs 10 --root $RESULT --save 'exp'  --vae_checkpoint $RESULT/exp/weights.13.pkl --enc-dim 1024 --enc-layers 3 --dec-dim 1024 --dec-layers 3 --dropout 0.2 --batch_size 8 --num_scales_dae 2 --weight_decay_norm_vae 1e-2 --weight_decay_norm_dae 0. --num_channels_dae 256 --train_vae --num_cell_per_scale_dae 1 --learning_rate_dae 3e-4 --learning_rate_min_dae 3e-4 --train_ode_solver_tol 1e-5 --cont_kl_anneal --sde_type vpsde --iw_sample_p ll_iw --num_process_per_node 1 --dae_arch ncsnpp --embedding_scale 100 --mixing_logit_init -6 --warmup_epochs 20  --lazy --disjoint_training --iw_sample_q ll_iw --iw_sample_p drop_sigma2t_iw
