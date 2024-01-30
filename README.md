@@ -3,7 +3,7 @@ Deep generative priors for single-particle reconstruction
 
 
 To-do lists:
-(1) License update \\ 
-(2) Load "K" in VampPrior-SPR
-(3) Merging different methods
-(4) Read-me
+(1) License update  <br>
+(2) Load "K" in VampPrior-SPR  <br>
+(3) Merging different methods   <br>
+(4) Read-me  <br>
