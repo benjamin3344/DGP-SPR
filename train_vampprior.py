@@ -30,8 +30,6 @@ except:
 
 
 def add_args(parser):
-    # parser.add_argument('--latent-dim', dest='zdim', type=int, default=20,
-    #                    help='Dimensions of latent variables (default: %(default)s)')
 
     # experimental results
     parser.add_argument('--root', type=str, default='/tmp/nvae-diff/expr',
@@ -304,9 +302,7 @@ def save_config(args, dataset, lattice, model, out_config):
         pickle.dump(config, f)
         meta = dict(time=dt.now(),
                     cmd=sys.argv)
-        # meta = dict(time=dt.now(),
-        #             cmd=sys.argv,
-        #             version=cryodrgn.__version__)
+ 
         pickle.dump(meta, f)
 
 
@@ -340,10 +336,7 @@ def main(args):
     else:
         raise RuntimeError("Invalid argument for encoder mask radius {}".format(args.enc_mask))
     activation={"relu": nn.ReLU, "leaky_relu": nn.LeakyReLU}[args.activation]
-    # model = VAEvampprior(lattice, args.qlayers, args.qdim, args.players, args.pdim,
-    #                    in_dim, args.zdim, encode_mode=args.encode_mode, enc_mask=enc_mask,
-    #                    enc_type=args.pe_type, enc_dim=args.pe_dim, domain=args.domain,
-    #                    activation=activation, feat_sigma=args.feat_sigma)
+
     model = VAEvampprior(lattice, args.qlayers, args.qdim, args.players, args.pdim,
                        in_dim, args.zdim, encode_mode=args.encode_mode, enc_mask=enc_mask,
                        enc_type=args.pe_type, enc_dim=args.pe_dim, domain=args.domain,
@@ -480,10 +473,6 @@ def main(args):
     td = dt.now() - t1
     logging.info('Finished in {} ({} per epoch)'.format(td, td / (num_epochs - start_epoch)))
 
-    #
-    # latent_dim = vae.zdim()
-    # # dae = NCSNpp(args, latent_dim)
-   # eval
 
 
 if __name__ == '__main__':
