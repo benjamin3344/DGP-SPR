@@ -8,9 +8,9 @@ This repository shared the source code for the paper *"Deep Generative Priors fo
 - LSGM: [https://github.com/NVlabs/LSGM](https://github.com/NVlabs/LSGM)
 
 
-### Requirements
+## Requirements
 
-### Data
+## Data
 
 The experiments can be run on cryo-EM datasets with extracted particle stacks (.mrc or .mrcs), ctf and poses estimation (.pkl). Please check CryoDRGN([https://github.com/ml-struct-bio/cryodrgn](https://github.com/ml-struct-bio/cryodrgn)) for pre-processing. The commonly-used experimental datasets include:
 
@@ -27,14 +27,14 @@ New simulated and experimental datasets built in this paper include:
 
 
 
-### Models 
+## Models 
 
-### Citation
+## Citation
 
 Pending... waiting for production
 
 
-### Acknowledgements
+## Acknowledgements
 
 The project is supported by the Natural Sciences and Engineering Research Council of Canada (NSERC)’s Discovery Grant. The Open Centre for the Characterization of Advanced Materials (OCCAM) group is funded by the Canada Foundation for Innovation. This research was enabled in part by support provided by Compute Canada.  
 
