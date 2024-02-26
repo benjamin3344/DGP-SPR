@@ -36,7 +36,9 @@ New simulated and experimental datasets built in this paper include:
 ### CryoDRGN
 
 train_vae.py is a simplified implementation of CryoDRGN
+```
 $ python train_vae.py $DATADIR/data/L17Combine_weight_local.mrcs --poses $DATADIR/data/pose.pkl --ctf $DATADIR/data/ctf.pkl --zdim 16 -n 100 --enc-dim 1024 --enc-layers 3 --dec-dim 1024 --dec-layers 3 --amp --uninvert-data --root $RESULT --ind $DATADIR/intersection.96393.pkl --lazy
+```
 
 ### VampPrior-SPR
 
