@@ -1,17 +1,12 @@
 #!/bin/bash
 #SBATCH --gres=gpu:v100l:1       # Request GPU "generic resources"
-#SBATCH --account=def-janehowe
+#SBATCH --account=...
 #SBATCH --cpus-per-task=6  # Cores proportional to GPUs: 6 on Cedar, 10 on Béluga, 16 on Graham.
 #SBATCH --mem=32000M       # Memory proportional to GPUs: 32000 Cedar, 47000 Béluga, 64000 Graham.
 #SBATCH --time=0-12:00     # DD-HH:MM:SS
 
-
-# module load StdEnv/2020 python/3.8 cuda cudnn
 module load StdEnv/2020 python/3.7 cuda cudnn
 
-SOURCEDIR=/home/shibin2/projects/def-janehowe/shared_2022
-DATADIR=/home/shibin2/projects/def-janehowe/shared_2022/cryodrgn/dataset/noncontiguous
-RESULT=/home/shibin2/projects/def-janehowe/shared_2022/output
 
 # Prepare virtualenv
 virtualenv --no-download $SLURM_TMPDIR/env
@@ -26,14 +21,13 @@ pip3 install --no-index scipy
 pip3 install --no-index ninja
 pip3 install --no-index pandas
 pip install --no-index $SOURCEDIR/wheels/torchdiffeq-0.2.2-py3-none-any.whl
-# pip install --no-index $SOURCEDIR/wheels/torchvision-0.9.0-py3-none-any.whl
 pip install --no-index torchvision
 
-SOURCEDIR=/home/shibin2/projects/def-janehowe/shibin2
-DATADIR=/home/shibin2/projects/def-janehowe/shared_2022/dataset/EMPIAR-10180/128
-RESULT=/home/shibin2/projects/def-janehowe/shared_2022/output/10180_256x3_z10
-cp -rf /home/shibin2/projects/def-janehowe/shared_2022/scripts/LSGM_SPR ./
-cd LSGM_SPR
+SOURCEDIR=/home/...
+DATADIR=/home/...
+RESULT=/home/...
+cp -rf DGP_SPR ./
+cd DGP_SPR
 
 
 python train_lsgm.py $DATADIR/particles.128.txt --poses $DATADIR/pose.pkl --ctf $DATADIR/ctf.pkl --zdim 10 --epochs 10 --root $RESULT --save 'exp'  --vae_checkpoint $RESULT/exp/weights.49.pkl --enc-dim 256 --enc-layers 3 --dec-dim 256 --dec-layers 3 --dropout 0.2 --batch_size 8 --num_scales_dae 2 --weight_decay_norm_vae 1e-2 --weight_decay_norm_dae 0. --num_channels_dae 256 --train_vae --num_cell_per_scale_dae  2 --learning_rate_dae 3e-4 --learning_rate_min_dae 3e-4 --train_ode_solver_tol 1e-5 --cont_kl_anneal --sde_type vpsde --iw_sample_p ll_iw --num_process_per_node 1 --dae_arch ncsnpp --embedding_scale 100 --mixing_logit_init -6 --warmup_epochs 20  --lazy --disjoint_training --iw_sample_q ll_iw --iw_sample_p drop_sigma2t_iw --embedding_dim 64

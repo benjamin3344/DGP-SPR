@@ -10,6 +10,11 @@ This repository shared the source code for the paper *"Deep Generative Priors fo
 
 ## Requirements
 
+- python 3.7
+- torch 1.8.0
+- torchdiffeq 0.2.2 
+- please check example_scripts for other libraries
+
 ## Data
 
 The experiments can be run on cryo-EM datasets with extracted particle stacks (.mrc or .mrcs), ctf and poses estimation (.pkl). Please check CryoDRGN([https://github.com/ml-struct-bio/cryodrgn](https://github.com/ml-struct-bio/cryodrgn)) for pre-processing. The commonly-used experimental datasets include:
@@ -26,8 +31,17 @@ New simulated and experimental datasets built in this paper include:
 
 
 
-
 ## Models 
+
+### CryoDRGN
+
+train_vae.py is a simplified implementation of CryoDRGN
+
+### VampPrior-SPR
+
+### ExemplarPrior-SPR
+
+### LSGM-SPR
 
 ## Citation
 
@@ -43,3 +57,4 @@ To-do lists:
 (2) Load "K" in VampPrior-SPR  <br>
 (3) Merging different methods   <br>
 (4) Read-me  <br>
+(5) Organize and upload analyze codes
