@@ -41,16 +41,27 @@ $ python train_vae.py $DATADIR/data/L17Combine_weight_local.mrcs --poses $DATADI
 ```
 
 ### VampPrior-SPR
+Except for the *--number-components*, you can also specify *--pseudoinputs-mean* and *--pseudoinputs-std* for the initiallization of pseudo inputs.
 
+```
 $ python train_vampprior.py $DATADIR/particles.256.mrcs --poses $DATADIR/pose.pkl --ctf $DATADIR/ctf.pkl --zdim 10 -n 101 -b 8  --enc-dim 256 --enc-layers 3 --dec-dim 256 --dec-layers 3 --amp --lazy --lr 0.0001 --root $RESULT --save 'exp_vampprior' --number-components 50 --checkpoint 5
+```
+
+
 
 ### ExemplarPrior-SPR
 
+```
 $ python train_exemplar.py $DATADIR/particles.256.mrcs  --poses $DATADIR/pose.pkl --ctf $DATADIR/ctf.pkl --zdim 10 -n 101 --root $RESULT --save 'exp_exemplar'  --enc-dim 256 --enc-layers 3 --dec-dim 256 --dec-layers 3  --amp --lazy --lr 0.0001 --beta 1 --checkpoint 5 --batch-size 8 --prior 'exemplar' --number-cachecomponents 5000 --approximate-prior --log-interval 10000
+```
+
 
 ### LSGM-SPR
 
+```
 $ python train_lsgm.py $DATADIR/particles.256.txt --poses $DATADIR/pose.pkl --ctf $DATADIR/ctf.pkl --zdim 10 --epochs 101 --root $RESULT --save 'exp_lsgm_5e-4' --vada_checkpoint $RESULT/2/exp_lsgm_5e-4/checkpoint.pt --cont_training --enc-dim 256 --enc-layers 3 --dec-dim 256 --dec-layers 3 --dropout 0.1 --batch_size 8 --num_scales_dae 2 --weight_decay_norm_vae 1e-2 --weight_decay_norm_dae 0. --num_channels_dae 8 --train_vae --num_cell_per_scale_dae 1 --learning_rate_dae 3e-4 --learning_rate_min_dae 3e-4 --train_ode_solver_tol 1e-5  --sde_type vpsde --iw_sample_p ll_iw --num_process_per_node 1 --dae_arch ncsnpp --embedding_scale 50 --mixing_logit_init -3 --warmup_epochs 0 --lazy --disjoint_training --iw_sample_q ll_iw --iw_sample_p drop_sigma2t_iw --embedding_dim 64 --beta 0.1 --learning_rate_vae 5e-4 --weight_decay 0 --uninvert-data
+```
+
 
 ## Citation
 
