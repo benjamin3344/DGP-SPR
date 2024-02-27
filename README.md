@@ -2,7 +2,7 @@
 
 This repository shared the source code for the paper *"Deep Generative Priors for Biomolecular 3D Heterogeneous Reconstruction from Cryo-EM Projections"* accepted by the Journal of Structural Biology. Variational autoencoders (VAEs) with three types of deep generative priors were learned for latent variable inference and heterogeneous 3D reconstruction via Bayesian inference. More specifically, three priors were incoorperated into the backbone structures (CryoDRGN):  "Variational Mixture of Posteriors" priors (**VampPrior-SPR**), non-parametric exemplar-based priors (**ExemplarPrior-SPR**) and priors from latent score-based generative models (**LSGM-SPR**). Codes were adapted from the following repositories:
 
-- CryoDRGN: [https://github.com/ml-struct-bio/cryodrgn](https://github.com/ml-struct-bio/cryodrgn) v1.0.0
+- CryoDRGN: [https://github.com/ml-struct-bio/cryodrgn](https://github.com/ml-struct-bio/cryodrgn) v1.0.0b0
 - VAE-vampprior: [https://github.com/jmtomczak/vae_vampprior](https://github.com/jmtomczak/vae_vampprior)
 - Exemplar-VAE: [https://github.com/sajadn/Exemplar-VAE](https://github.com/sajadn/Exemplar-VAE)
 - LSGM: [https://github.com/NVlabs/LSGM](https://github.com/NVlabs/LSGM)
@@ -35,7 +35,7 @@ New simulated and experimental datasets built in this paper include:
 
 ### CryoDRGN
 
-train_vae.py is a simplified implementation of CryoDRGN
+train_vae.py is a simplified implementation of CryoDRGN. As an alternative way, you can download the most up-to-date CryoDRGN.
 ```
 $ python train_vae.py $DATADIR/data/L17Combine_weight_local.mrcs --poses $DATADIR/data/pose.pkl --ctf $DATADIR/data/ctf.pkl --zdim 16 -n 100 --enc-dim 1024 --enc-layers 3 --dec-dim 1024 --dec-layers 3 --amp --uninvert-data --root $RESULT --ind $DATADIR/intersection.96393.pkl --lazy
 ```
@@ -50,7 +50,7 @@ $ python train_vampprior.py $DATADIR/particles.256.mrcs --poses $DATADIR/pose.pk
 
 
 ### ExemplarPrior-SPR
-
+In ExemplarPrior-SPR, *--number-components* neighboring exemplars in the latent space were used to calculated the priors for regularization. The cache table was updated after each batch. Time complexity will be reduced if the cache table was updated less frequently (we will upload the codes later). 
 ```
 $ python train_exemplar.py $DATADIR/particles.256.mrcs  --poses $DATADIR/pose.pkl --ctf $DATADIR/ctf.pkl --zdim 10 -n 101 --root $RESULT --save 'exp_exemplar'  --enc-dim 256 --enc-layers 3 --dec-dim 256 --dec-layers 3  --amp --lazy --lr 0.0001 --beta 1 --checkpoint 5 --batch-size 8 --prior 'exemplar' --number-cachecomponents 5000 --approximate-prior --log-interval 10000
 ```
@@ -62,6 +62,10 @@ $ python train_exemplar.py $DATADIR/particles.256.mrcs  --poses $DATADIR/pose.pk
 $ python train_lsgm.py $DATADIR/particles.256.txt --poses $DATADIR/pose.pkl --ctf $DATADIR/ctf.pkl --zdim 10 --epochs 101 --root $RESULT --save 'exp_lsgm_5e-4' --vada_checkpoint $RESULT/2/exp_lsgm_5e-4/checkpoint.pt --cont_training --enc-dim 256 --enc-layers 3 --dec-dim 256 --dec-layers 3 --dropout 0.1 --batch_size 8 --num_scales_dae 2 --weight_decay_norm_vae 1e-2 --weight_decay_norm_dae 0. --num_channels_dae 8 --train_vae --num_cell_per_scale_dae 1 --learning_rate_dae 3e-4 --learning_rate_min_dae 3e-4 --train_ode_solver_tol 1e-5  --sde_type vpsde --iw_sample_p ll_iw --num_process_per_node 1 --dae_arch ncsnpp --embedding_scale 50 --mixing_logit_init -3 --warmup_epochs 0 --lazy --disjoint_training --iw_sample_q ll_iw --iw_sample_p drop_sigma2t_iw --embedding_dim 64 --beta 0.1 --learning_rate_vae 5e-4 --weight_decay 0 --uninvert-data
 ```
 
+
+### Evaluation
+
+### Analyze
 
 ## Citation
 
