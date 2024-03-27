@@ -64,6 +64,9 @@ $ python train_lsgm.py $DATADIR/particles.256.txt --poses $DATADIR/pose.pkl --ct
 
 
 ### Evaluation
+```
+
+```
 
 ### Analyze
 
@@ -77,7 +80,6 @@ Pending... waiting for production
 The project is supported by the Natural Sciences and Engineering Research Council of Canada (NSERC)’s Discovery Grant. The Open Centre for the Characterization of Advanced Materials (OCCAM) group is funded by the Canada Foundation for Innovation. This research was enabled in part by support provided by Compute Canada.  
 
 To-do lists:
-(1) License update  <br>
 (2) Load "K" in VampPrior-SPR  <br>
 (3) Merging different methods   <br>
 (4) Read-me  <br>

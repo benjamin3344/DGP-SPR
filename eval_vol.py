@@ -1,4 +1,5 @@
 '''
+Mainly adapted from CryoDRGN
 Evaluate the decoder at specified values of z
 '''
 import numpy as np
@@ -8,7 +9,6 @@ import pickle
 from datetime import datetime as dt
 import matplotlib.pyplot as plt 
 import pprint
-
 import torch
 
 from cryodrgn import mrc

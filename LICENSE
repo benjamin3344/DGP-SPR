@@ -1,8 +1,8 @@
 Multiple licenses: GPL v3.0 and MIT and NSCL
 
-Please check individual folders for LICENSE. The main codes also followed GPL v3.0 as CryoDRGN.
+Please check individual folders for LICENSE. The main codes followed GPL v3.0 as CryoDRGN.
 
 - Codes in cryodrgn are under GNU General Public License v3.0
-- Codes in vampprior and exemplar are under MIT license
+- Codes in vampprior and exemplar are under MIT License
 - Codes in score-sde are under NVIDIA Source Code License
 
