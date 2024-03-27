@@ -95,7 +95,7 @@ Cite our paper using the following bibtex item:
   year={2024},
   publisher={Elsevier}
 }
-111
+```
 Or: <br>
 ```
 Shi, Bin, et al. "Deep Generative Priors for Biomolecular 3D Heterogeneous Reconstruction from Cryo-EM Projections." Journal of Structural Biology (2024): 108073.
