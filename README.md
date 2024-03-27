@@ -83,4 +83,5 @@ To-do lists:
 (2) Load "K" in VampPrior-SPR  <br>
 (3) Merging different methods   <br>
 (4) Read-me  <br>
-(5) Organize and upload analyze codes
+(5) Analyze codes were uploaded and would be re-organized later. 
+(6) Add __init__ file for subfolders for importing libraries.
