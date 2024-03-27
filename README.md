@@ -71,7 +71,7 @@ $ python train_lsgm.py $DATADIR/particles.256.txt --poses $DATADIR/pose.pkl --ct
 ### Analyze
 
 Ongoing....
-Different codes were used to analyze simulated datasets with continuous and discrete states. For datasets <\br>
+Different codes were used to analyze simulated datasets with continuous and discrete states. For datasets <br>
 
 For continuous states, the ground-truth angle_of_rotation.txt and learned z.100.pkl are required.
 ```
@@ -85,7 +85,21 @@ python analyze/analyze_plot_leastsquare_10d.py /path/to/folder/with_zzcolor_pkl
 
 ## Citation
 
-Pending... waiting for production
+Cite our paper using the following bibtex item:
+```
+@article{shi2024deep,
+  title={Deep Generative Priors for Biomolecular 3D Heterogeneous Reconstruction from Cryo-EM Projections},
+  author={Shi, Bin and Zhang, Kevin and Fleet, David J and McLeod, Robert A and Miller, RJ Dwayne and Howe, Jane Y},
+  journal={Journal of Structural Biology},
+  pages={108073},
+  year={2024},
+  publisher={Elsevier}
+}
+111
+Or: <br>
+```
+Shi, Bin, et al. "Deep Generative Priors for Biomolecular 3D Heterogeneous Reconstruction from Cryo-EM Projections." Journal of Structural Biology (2024): 108073.
+```
 
 
 ## Acknowledgements
@@ -96,5 +110,5 @@ To-do lists:
 (2) Load "K" in VampPrior-SPR  <br>
 (3) Merging different methods   <br>
 (4) Read-me  <br>
-(5) Analyze codes were uploaded and would be re-organized later. 
+(5) Analyze codes were uploaded and would be re-organized later. <br>
 (6) Add __init__ file for subfolders for importing libraries.
