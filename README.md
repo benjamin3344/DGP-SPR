@@ -71,17 +71,17 @@ $ python train_lsgm.py $DATADIR/particles.256.txt --poses $DATADIR/pose.pkl --ct
 ### Analyze
 
 Ongoing....
-Different codes were used to analyze simulated datasets with continuous and discrete states. For datasets
+Different codes were used to analyze simulated datasets with continuous and discrete states. For datasets <\br>
 
 For continuous states, the ground-truth angle_of_rotation.txt and learned z.100.pkl are required.
-'''
+```
 python analyze/analyze_plot_leastsquare_continuous_10d_paper.py /path/to/folder/with_result_z100pkl --methods 'exemplar'
-'''
+```
 
 For discrete states, zzcolor.pkl are required which is a pkl file which appended the ground-truth color to the z.100.pkl...... pending
-'''
+```
 python analyze/analyze_plot_leastsquare_10d.py /path/to/folder/with_zzcolor_pkl 
-'''
+```
 
 ## Citation
 
