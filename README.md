@@ -111,4 +111,3 @@ To-do lists:
 (3) Merging different methods   <br>
 (4) Read-me  <br>
 (5) Analyze codes were uploaded and would be re-organized later. <br>
-(6) Add __init__ file for subfolders for importing libraries.
