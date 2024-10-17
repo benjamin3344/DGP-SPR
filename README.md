@@ -7,6 +7,7 @@ This repository shared the source code for the paper *"Deep Generative Priors fo
 - Exemplar-VAE: [https://github.com/sajadn/Exemplar-VAE](https://github.com/sajadn/Exemplar-VAE)
 - LSGM: [https://github.com/NVlabs/LSGM](https://github.com/NVlabs/LSGM)
 
+<img src='imgs/pipeline.png' />
 
 ## Requirements
 
